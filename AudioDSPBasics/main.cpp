@@ -21,7 +21,6 @@
 using namespace std;
 
 const int SAMPLE_RATE = 44100;
-const int NUM_CHANNELS = 2;
 
 const string IN_DIR = "/Users/Gerry/Documents/Research/Presentations/2016-06_MusicTech/AudioDSPBasics/InputFiles/";
 const string OUT_DIR = "/Users/Gerry/Documents/Research/Presentations/2016-06_MusicTech/AudioDSPBasics/OutputFiles/";
@@ -256,6 +255,8 @@ void applyFilter()
 // while applying gain to the left and right channels.
 void applyBalance()
 {
+    const int NUM_CHANNELS = 2;
+    
     const int L = 0; // Left channel
     const int R = 1; // Right channel
 
@@ -266,7 +267,7 @@ void applyBalance()
     vector<vector<float>> sourceBuf;
     string sourcePath = IN_DIR + "StairwayExcerpt.wav";
     audioRead(sourcePath, sourceBuf, sr);
-    assert(sourceBuf.size() == 2); // Expecting stereo
+    assert(sourceBuf.size() == NUM_CHANNELS); // Expecting stereo
     auto numFrames = sourceBuf[L].size();
     
     // Set up an output buffer
